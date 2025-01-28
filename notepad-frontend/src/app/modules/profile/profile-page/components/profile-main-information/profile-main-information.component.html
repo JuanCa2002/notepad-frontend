@@ -1,0 +1,97 @@
+<h2 class="font-bold text-center capitalize">Welcome {{getFullName()}}</h2>
+<div class="flex align-items-center justify-content-end p-5">
+    <p-button severity="help" icon="pi pi-pencil" (onClick)="enableAllFormControls()"/>
+</div>
+<form [formGroup]="formProfile" class="grid">
+    <div class="flex flex-column col-3 justify-content-center align-items-center gap-2 p-3">
+        <label for="name" class="font-bold text-sm">Name <span class="required">*</span></label>
+        <input 
+                pInputText 
+                id="name" 
+                name="name" 
+                formControlName="name" 
+                placeholder="Juan" 
+                class="flex-auto uppercase" 
+                autocomplete="off" />
+    </div>
+    <div class="flex flex-column col-3 justify-content-center align-items-center gap-2 p-3">
+        <label for="secondName" class="font-bold text-sm">Second Name </label>
+        <input 
+                pInputText 
+                id="secondName" 
+                name="secondName" 
+                formControlName="secondName" 
+                placeholder="Paulo" 
+                class="flex-auto uppercase" 
+                autocomplete="off" />
+    </div>
+    <div class="flex flex-column col-3 justify-content-center align-items-center gap-2 p-3">
+        <label for="firstLastName" class="font-bold text-sm">First Last Name <span class="required">*</span></label>
+        <input 
+                pInputText 
+                id="firstLastName" 
+                name="firstLastName" 
+                formControlName="firstLastName" 
+                placeholder="Torres" 
+                class="flex-auto uppercase" 
+                autocomplete="off" />
+    </div>
+    <div class="flex flex-column col-3 justify-content-center align-items-center gap-2 p-3">
+        <label for="secondLastName" class="font-bold text-sm">Second Last Name </label>
+        <input 
+                pInputText 
+                id="secondLastName" 
+                name="secondLastName" 
+                formControlName="secondLastName" 
+                placeholder="Beltran" 
+                class="flex-auto uppercase" 
+                autocomplete="off" />
+    </div>
+    <div class="flex flex-column col-3 justify-content-center align-items-center gap-2 p-3">
+        <label for="identificationNumber" class="font-bold text-sm">Identification Number <span class="required">*</span></label>
+        <input 
+                pInputText 
+                id="identificationNumber" 
+                name="identificationNumber" 
+                formControlName="identificationNumber" 
+                placeholder="124519842"
+                type="number" 
+                class="flex-auto" 
+                autocomplete="off" />
+    </div>
+    <div class="flex flex-column col-3 justify-content-center align-items-center gap-2 p-3">
+        <label for="email" class="font-bold text-sm">Email <span class="required">*</span></label>
+        <input 
+                pInputText 
+                id="email" 
+                name="email" 
+                formControlName="email" 
+                placeholder="example@email.com"
+                type="email" 
+                class="flex-auto" 
+                autocomplete="off" />
+    </div>
+    <div class="flex flex-column col-12 align-items-center justify-center">
+        <p-button label="Update" severity="success" icon="pi pi-check" [disabled]="formProfile.invalid || jusRead" (onClick)="openConfirmationUpdateUser()"/>
+    </div>
+</form>
+<p-divider></p-divider>
+<h4 class="font-bold text-start p-5">Set your password</h4>
+<form [formGroup]="formSetPassword" class="grid px-5">
+    <div class="flex flex-column col-6 gap-2">
+        <label for="currentPassword" class="font-bold text-sm">Current Password <span class="required">*</span></label>
+        <input pInputText id="currentPassword" name="currentPassword" formControlName="currentPassword" type="password" class="flex-auto" autocomplete="off" />
+      </div>
+    <div class="flex flex-column col-6 gap-2">
+        <label for="newPassword" class="font-bold text-sm">New Password <span class="required">*</span></label>
+        <input pInputText id="newPassword" name="newPassword" formControlName="newPassword" type="password" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex flex-column col-12 align-items-center justify-center">
+        <p-button label="Set Password" severity="info" icon="pi pi-arrow-right-arrow-left" [disabled]="formSetPassword.invalid" (onClick)="openConfirmSetPassword()"/>
+    </div>
+</form>
+<p-divider></p-divider>
+<div class="p-5">
+    <h4 class="font-bold text-start">Inactive my account</h4>
+    <p-button label="Inactive" severity="danger" icon="pi pi-exclamation-triangle" (onClick)="openConfirmSetState()"/>
+</div>

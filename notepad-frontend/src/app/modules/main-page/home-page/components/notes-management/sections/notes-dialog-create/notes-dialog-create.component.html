@@ -1,0 +1,88 @@
+<p-dialog
+    header="{{isUpdate ? 'Update': 'New'}} Note" 
+    [modal]="true"
+    [draggable]="false"
+    [closable]="false" 
+    [(visible)]="showModalNew" 
+    [style]="{ width: '30rem' }">
+    <span class="p-text-secondary block mb-5 mt-4">{{isUpdate  ? 'Update': 'Create'}} Note</span>
+    <form [formGroup]="formCreateNote">
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="title_new_note" class="font-semibold w-6rem">Title <span class="required">*</span></label>
+            <input pInputText 
+                    id="title_new_note" 
+                    name="title_new_note" 
+                    formControlName="title" 
+                    class="flex-auto capitalize" 
+                    autocomplete="off" />
+        </div>
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="text_new_note" class="font-semibold w-6rem">Text <span class="required">*</span></label>
+            <textarea 
+                rows="5"
+                cols="30"
+                id="text_new_note" 
+                name="text_new_note"
+                formControlName="text"  
+                pInputTextarea>
+            </textarea>
+        </div>
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="category_new_note" class="font-semibold w-6rem">Category</label>
+            <p-dropdown 
+                [options]="categories"
+                id="category_new_note"
+                name="category_new_note"
+                optionLabel="name"
+                optionValue="id"
+                appendTo="body"
+                formControlName="categoryId" 
+                placeholder="Select"
+                showClear="true">
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-2" style="max-width: 12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <div 
+                            class="flex align-items-center justify-content-center border-round shadow-2 text-xs font-bold p-2 w-full h-auto"
+                            [style.backgroundColor]="selectedOption.tagColor != null ? selectedOption.tagColor : 'blue'"
+                            [style.color]="selectedOption.textColor != null ? selectedOption.textColor : 'white'">
+                            {{ selectedOption.name }}
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template let-category pTemplate="item">
+                    <div class="flex align-items-center gap-2" style="max-width: 12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <div 
+                            class="flex align-items-center justify-content-center border-round shadow-2 text-xs font-bold p-2 w-full h-auto"
+                            [style.backgroundColor]="category.tagColor != null ? category.tagColor : 'blue'"
+                            [style.color]="category.textColor != null ? category.textColor : 'white'">
+                            {{ category.name }}
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="flex align-items-center gap-3 mb-3" *ngIf="isUpdate">
+            <label for="state_new_note" class="font-semibold w-6rem">State</label>
+            <p-dropdown 
+                [options]="states"
+                id="state_new_note"
+                name="state_new_note"
+                formControlName="state" 
+                optionLabel="label" 
+                optionValue="value"
+                appendTo="body" 
+                placeholder="Select"
+                showClear="true"/>
+        </div>
+    </form>
+    <div class="flex flex-row justify-content-end" >
+        <div class="flex gap-2">
+            <p-button label="{{(justRead? 'Close': 'Cancel')}}" severity="secondary" (onClick)="showModalNew = false; this.resetForm(); this.justRead= false" />
+            <p-button *ngIf="!justRead" 
+                label="{{isUpdate ? 'Update' : 'Save'}}" 
+                [disabled]="formCreateNote.invalid"
+                (onClick)="openConfirmSave()"  
+            />
+        </div>
+    </div>
+</p-dialog>

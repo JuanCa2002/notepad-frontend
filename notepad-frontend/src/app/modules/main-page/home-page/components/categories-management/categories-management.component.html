@@ -1,0 +1,16 @@
+<div class="flex flex-row justify-content-center" [style.backgroundColor]="'#e9b10c'">
+    <h3 class="text-center font-bold text-bluegray-50">MY CATEGORIES</h3>
+</div>
+<div class="flex flex-column gap-2 p-3">
+    <div class="flex justify-content-end">
+        <p-button 
+            icon="pi pi-plus" 
+            severity="success"
+            title="Create a new category"
+            (onClick)="showDialog()">
+        </p-button>
+    </div>
+    <p-divider></p-divider>
+</div>
+<app-categories-data-view #dataView (onEdit)="showEditDialog($event)"></app-categories-data-view>
+<app-categories-dialog-create #createDialog (onSave)="resetData()"></app-categories-dialog-create>

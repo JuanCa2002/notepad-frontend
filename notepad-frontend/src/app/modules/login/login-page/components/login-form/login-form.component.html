@@ -1,0 +1,50 @@
+<div class="flex justify-content-center align-items-center h-screen">
+    <div class="border-round-md text-white p-4" style="background-color: #838b92;">
+        <div 
+            class="flex border-circle justify-content-center align-items-center shadow-2 hover:shadow-4 transition-duration-300 mx-auto"
+            style="width: 180px; height: 100px; overflow: hidden;"
+        >
+            <img 
+                src="assets/images/my-note-pad-logo.jpg" 
+                alt="my-note-pad-logo"
+                class="w-full h-full object-contain"
+            />
+        </div>
+        <div class="custom-divider"></div>
+        <form [formGroup]="formLogin" class="flex flex-column justify-content-center align-items-center gap-5 p-4">
+            <div class="flex flex-column gap-2">
+                <label for="username" class="font-bold text-sm">Username <span class="required">*</span></label>
+                <input 
+                    pInputText 
+                    id="username" 
+                    name="username" 
+                    formControlName="email"
+                    placeholder="example@email.com"
+                    type="email" 
+                    class="flex-auto" 
+                    autocomplete="off" />
+            </div>
+            <div class="flex flex-column gap-2">
+                <label for="password" class="font-bold text-sm">Password <span class="required">*</span></label>
+                <input 
+                    pInputText 
+                    id="password" 
+                    name="password" 
+                    formControlName="password"
+                    type="password" 
+                    class="flex-auto" 
+                    autocomplete="off" />
+            </div>                      
+        </form>
+        <div class="flex justify-content-center align-items-center">
+            <p-button label="Login" icon="pi pi-user" styleClass="w-10rem mx-auto" (onClick)="login()" [disabled]="formLogin.invalid"/>
+        </div>
+        <div class="flex flex-column items-center justify-center p-3">
+            <span class="font-semibold text-center eslogan">Already have an account? <span class="cursor-pointer no-underline hover:underline text-yellow-500" (click)="redirectCreateAccount()">Log In</span></span>
+        </div>
+        <div class="custom-divider"></div>
+        <div class="flex flex-column items-center justify-center p-3">
+            <span class="font-semibold font-italic text-center eslogan">Write your life</span>
+        </div>
+    </div>
+</div>

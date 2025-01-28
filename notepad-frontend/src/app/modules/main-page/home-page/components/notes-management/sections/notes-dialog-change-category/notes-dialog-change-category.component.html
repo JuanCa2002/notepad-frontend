@@ -1,0 +1,68 @@
+<p-dialog
+    header="{{ 'Update Note/s ' + (isUpdateCategory ? 'Category' : 'State') }}" 
+    [modal]="true"
+    [closable]="false"
+    [draggable]="false" 
+    [(visible)]="showModal" 
+    [style]="{ width: '30rem' }">
+    <span class="p-text-secondary block mb-5 mt-4"> {{ 'Update Note/s ' + (isUpdateCategory ? 'Category' : 'State') }}</span>
+    <form [formGroup]="formUpdateCategory">
+        <div class="flex align-items-center gap-3 mb-3" *ngIf="isUpdateCategory">
+            <label for="category_new_note" class="font-semibold w-6rem">Category <span class="required">*</span></label>
+            <p-dropdown 
+                [options]="categories"
+                id="category_new_note"
+                name="category_new_note"
+                optionLabel="name"
+                optionValue="id"
+                appendTo="body"
+                formControlName="categoryId" 
+                placeholder="Select"
+                showClear="true">
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-2" style="max-width: 12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <div 
+                            class="flex align-items-center justify-content-center border-round shadow-2 text-xs font-bold p-2 w-full h-auto"
+                            [style.backgroundColor]="selectedOption.tagColor != null ? selectedOption.tagColor : 'blue'"
+                            [style.color]="selectedOption.textColor != null ? selectedOption.textColor : 'white'">
+                            {{ selectedOption.name }}
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template let-category pTemplate="item">
+                    <div class="flex align-items-center gap-2" style="max-width: 12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <div 
+                            class="flex align-items-center justify-content-center border-round shadow-2 text-xs font-bold p-2 w-full h-auto"
+                            [style.backgroundColor]="category.tagColor != null ? category.tagColor : 'blue'"
+                            [style.color]="category.textColor != null ? category.textColor : 'white'">
+                            {{ category.name }}
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="flex align-items-center gap-3 mb-3" *ngIf="!isUpdateCategory">
+            <label for="state_new_note" class="font-semibold w-6rem">State <span class="required">*</span></label>
+            <p-dropdown 
+                [options]="states"
+                id="state_new_note"
+                name="state_new_note"
+                formControlName="state" 
+                optionLabel="label" 
+                optionValue="value"
+                appendTo="body" 
+                placeholder="Select"
+                showClear="true"/>
+        </div>
+    </form>
+    <div class="flex flex-row justify-content-between">
+        <div class="flex gap-2">
+            <p-button label="Cancel" severity="secondary" (onClick)="showModal = false; this.resetForm(); this.isUpdateCategory = false;" />
+            <p-button 
+                label="{{ 'Update ' + (isUpdateCategory ? 'Category' : 'State') }}" 
+                [disabled]="formUpdateCategory.invalid"
+                (onClick)="openConfirmChangeCategoryState()"  
+            />
+        </div>
+    </div>
+</p-dialog>

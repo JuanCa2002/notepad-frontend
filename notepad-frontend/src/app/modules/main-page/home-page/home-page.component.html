@@ -1,0 +1,15 @@
+<div class="flex flex-column items-center justify-center p-3">
+    <h1 class="text-center font-bold">MY NOTEPAD</h1>
+    <span class="font-semibold font-italic text-center eslogan">Write your life</span>
+</div>
+
+<div class="p-4">
+    <div class="grid grid-nogutter gap-7 h-auto">
+        <div class="col-4 flex flex-column" style="border: 1px solid #ccc;">
+            <app-categories-management (onChange)="resetNotes()"></app-categories-management>
+        </div>
+        <div class="col-7 flex flex-column" style="border: 1px solid #ccc;">
+            <app-notes-management #notes></app-notes-management>
+        </div>
+    </div>
+</div>

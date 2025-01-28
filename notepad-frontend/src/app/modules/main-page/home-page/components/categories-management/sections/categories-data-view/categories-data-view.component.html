@@ -1,0 +1,23 @@
+<div class="card">
+    <p-dataView 
+        [value]="categories" 
+        layout="list">
+        <ng-template let-category pTemplate="list">
+            <div class="grid">
+                <div *ngFor="let category of categories; let index = index;" 
+                     class="col-12 sm:col-6 lg:col-3 m-1">
+                    <div class="flex justify-content-center gap-1 cursor-pointer" (click)="editCategory(category)">
+                        <div class="flex justify-content-center align-items-center">
+                            <div 
+                                class="flex align-items-center justify-content-center border-round shadow-2 text-lg font-bold p-3 w-full h-4rem"
+                                [style.backgroundColor]="category.tagColor != null ? category.tagColor : 'blue'"
+                                [style.color]="category.textColor != null ? category.textColor : 'white'">
+                                {{ category.name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>

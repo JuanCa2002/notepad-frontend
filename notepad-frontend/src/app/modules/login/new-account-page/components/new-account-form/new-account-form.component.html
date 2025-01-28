@@ -1,0 +1,64 @@
+<div class="flex justify-content-center align-items-start h-auto p-4" style="margin-top: 80px;">
+    <div class="border-round-md text-white p-6" style="background-color: #838b92; max-width: 500px; width: 100%;">
+
+      <div class="flex border-circle justify-content-center align-items-center shadow-2 hover:shadow-4 transition-duration-300 mx-auto mb-4" style="width: 180px; height: 100px; overflow: hidden;">
+        <img src="assets/images/my-note-pad-logo.jpg" alt="my-note-pad-logo" class="w-full h-full object-contain" />
+      </div>
+
+      <div class="custom-divider"></div>
+
+      <form [formGroup]="formRegister" class="flex flex-column justify-content-center align-items-center gap-4 p-4">
+        <div class="flex flex-column gap-2 w-full">
+          <label for="name" class="font-bold text-sm">Name <span class="required">*</span></label>
+          <input pInputText id="name" name="name" formControlName="name" placeholder="Juan" class="flex-auto capitalize" autocomplete="off" />
+        </div>
+        <div class="flex flex-column gap-2 w-full">
+          <label for="secondName" class="font-bold text-sm">Second Name</label>
+          <input pInputText id="secondName" name="secondName" formControlName="secondName" placeholder="Camilo" class="flex-auto capitalize" autocomplete="off" />
+        </div>
+        <div class="flex flex-column gap-2 w-full">
+          <label for="firstLastName" class="font-bold text-sm">First Last Name <span class="required">*</span></label>
+          <input pInputText id="firstLastName" name="firstLastName" formControlName="firstLastName" placeholder="Torres" class="flex-auto capitalize" autocomplete="off" />
+        </div>
+        <div class="flex flex-column gap-2 w-full">
+          <label for="secondLastName" class="font-bold text-sm">Second Last Name</label>
+          <input pInputText id="secondLastName" name="secondLastName" formControlName="secondLastName" placeholder="Beltran" class="flex-auto capitalize" autocomplete="off" />
+        </div>
+  
+        <div class="flex flex-column gap-2 w-full">
+          <label for="identificationNumber" class="font-bold text-sm">Identification Number <span class="required">*</span></label>
+          <input pInputText id="identificationNumber" name="identificationNumber" formControlName="identificationNumber" placeholder="546565644" type="number" class="flex-auto" autocomplete="off" />
+        </div>
+        <div class="flex flex-column gap-2 w-full">
+          <label for="email" class="font-bold text-sm">Email <span class="required">*</span></label>
+          <input pInputText id="email" name="email" formControlName="email" placeholder="example@email.com" type="email" class="flex-auto" autocomplete="off" />
+        </div>
+  
+        <div class="flex flex-column gap-2 w-full">
+          <label for="password" class="font-bold text-sm">Password <span class="required">*</span></label>
+          <input pInputText id="password" name="password" formControlName="password" type="password" class="flex-auto" autocomplete="off" />
+        </div>
+        <div class="flex flex-column gap-2 w-full">
+          <label for="confirmPassword" class="font-bold text-sm">Confirm Password <span class="required">*</span></label>
+          <input pInputText id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" type="password" class="flex-auto" autocomplete="off" />
+        </div>
+  
+        <div class="flex flex-column gap-2 w-full">
+          <label for="age" class="font-bold text-sm">Age <span class="required">*</span></label>
+          <input pInputText id="age" name="age" formControlName="age" type="number" class="flex-auto" autocomplete="off" />
+        </div>
+  
+        <div class="flex justify-content-center w-full mt-4 gap-3">
+            <p-button label="Cancel" icon="pi pi-times" styleClass="w-10rem p-button-secondary" (onClick)="cancelCreateAccount()"/>
+            <p-button label="Register" icon="pi pi-user-plus" severity="success" styleClass="w-10rem" [disabled]="formRegister.invalid" (onClick)="openConfirmNewAccount()"/>
+        </div>
+      </form>
+
+      <div class="custom-divider"></div>
+  
+      <div class="flex flex-column items-center justify-center p-3">
+        <span class="font-semibold font-italic text-center eslogan">Write your life</span>
+      </div>
+    </div>
+  </div>
+  

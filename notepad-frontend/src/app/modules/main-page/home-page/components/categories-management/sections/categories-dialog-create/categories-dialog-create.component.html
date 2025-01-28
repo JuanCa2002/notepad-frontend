@@ -1,0 +1,64 @@
+<p-dialog
+    header="{{isUpdate ? 'Update': 'New'}} Category" 
+    [modal]="true"
+    [draggable]="false"
+    [closable]="false" 
+    [(visible)]="showModalNew" 
+    [style]="{ width: '25rem' }">
+    <span class="p-text-secondary block mb-5 mt-4">{{isUpdate  ? 'Update': 'Create'}} Category</span>
+    <form [formGroup]="formCreateCategory">
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="name_new_category" class="font-semibold w-6rem">Name <span class="required">*</span></label>
+            <input pInputText 
+                    id="name_new_category" 
+                    name="name_new_category" 
+                    formControlName="name" 
+                    class="flex-auto uppercase" 
+                    autocomplete="off" />
+        </div>
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="tag_color_new_category" class="font-semibold w-6rem">Tag Color</label>
+            <p-colorPicker
+                id="tag_color_new_category" 
+                name="tag_color_new_category" 
+                formControlName="tagColor"
+                appendTo="body" 
+                class="flex-auto"/>
+        </div>
+        <div class="flex align-items-center gap-3 mb-3">
+            <label for="text_color_new_category" class="font-semibold w-6rem">Text Color</label>
+            <p-colorPicker
+                id="text_color_new_category" 
+                name="text_color_new_category" 
+                formControlName="textColor"
+                appendTo="body"  
+                class="flex-auto"/>
+        </div>
+    </form>
+    <div class="flex flex-row justify-content-between">
+        <div class="flex">
+            <p-button severity="danger" *ngIf="isUpdate" icon="pi pi-trash" (onClick)="openConfirmDelete()" />
+        </div>
+        <div class="flex gap-2">
+            <p-button label="Cancel" severity="secondary" (onClick)="showModalNew = false; this.resetForm(); this.isUpdate= false" />
+            <p-button 
+                label="{{isUpdate ? 'Update' : 'Save'}}" 
+                [disabled]="formCreateCategory.invalid" 
+                (onClick)="this.openConfirmSave()" 
+            />
+        </div>
+    </div>
+    <p-divider></p-divider>
+    <div class="flex flex-column align-items-center justify-content-center">
+        <p class="font-semibold">PREVIEW TAG DESIGN</p>
+        <div 
+            class="flex align-items-center justify-content-center border-round shadow-2 text-lg font-bold p-3 w-full h-4rem"
+            [style.backgroundColor]="formCreateCategory.get('tagColor')?.value != null ? formCreateCategory.get('tagColor')?.value : 'blue'"
+            [style.color]="formCreateCategory.get('textColor')?.value != null ? formCreateCategory.get('textColor')?.value : 'white'">
+            <span class="uppercase">{{formCreateCategory.get('name')?.value && formCreateCategory.get('name')?.value!= null ? formCreateCategory.get('name')?.value : 'MY CATEGORY'}}</span>
+        </div>
+</div>
+</p-dialog>
+
+<p-toast position="bottom-center" />
+<p-confirmDialog />

@@ -1,0 +1,74 @@
+<div class="card p-3">
+    <p-tabMenu 
+        [model]="items" 
+        [activeItem]="activeItem" 
+        (activeItemChange)="onActiveItemChange($event)" />
+</div>
+<div class="card">
+    <form [formGroup]="formCategoryFilter" class="grid">
+        <div class="flex flex-column align-items-end col gap-2 p-4">
+            <label for="category_filter" class="font-semibold">Category</label>
+            <p-dropdown 
+                [options]="categories"
+                id="category_filter"
+                name="category_filter"
+                optionLabel="name"
+                optionValue="id"
+                appendTo="body"
+                (onChange)="getAllNotes()"
+                formControlName="categoryId" 
+                placeholder="Select"
+                showClear="true">
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-2" style="max-width: 12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <div 
+                            class="flex align-items-center justify-content-center border-round shadow-2 text-xs font-bold p-2 w-full h-auto"
+                            [style.backgroundColor]="selectedOption.tagColor != null ? selectedOption.tagColor : 'blue'"
+                            [style.color]="selectedOption.textColor != null ? selectedOption.textColor : 'white'">
+                            {{ selectedOption.name }}
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template let-category pTemplate="item">
+                    <div class="flex align-items-center gap-2" style="max-width: 12rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <div 
+                            class="flex align-items-center justify-content-center border-round shadow-2 text-xs font-bold p-2 w-full h-auto"
+                            [style.backgroundColor]="category.tagColor != null ? category.tagColor : 'blue'"
+                            [style.color]="category.textColor != null ? category.textColor : 'white'">
+                            {{ category.name }}
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+    </form>
+</div>
+<div class="card">
+    <p-dataView 
+        [value]="notes" 
+        layout="list">
+        <ng-template let-note pTemplate="list">
+            <div class="grid">
+                <div *ngFor="let note of notes; let index = index;" 
+                     class="col-12 sm:col-6 lg:col-3 m-1">
+                    <div [ngClass]="note.isSelect ? 'opacity-40': ''" class="flex flex-column align-items-center gap-2 cursor-pointer p-2" (click)="selectNote(note.id!)">
+                        <div class="md:w-10rem relative">
+                            <img class="block xl:block mx-auto border-round w-full" src="../../../../../../../../assets/images/post-it.png" [alt]="note.title" />
+                            <p-tag
+                                class="absolute"
+                                [style.left.px]="4" [style.top.px]="4"
+                                *ngIf="note.category" 
+                                [value]="note.category.name" 
+                                [style]="{
+                                    backgroundColor: note.category.tagColor ? note.category.tagColor : 'blue',
+                                    color: note.category.textColor ? note.category.textColor : 'white'
+                                }">
+                            </p-tag>
+                        </div>
+                        <span class="font-bold text-center">{{note.title + ' - ' + note.creationDate + ' - ' + note.creationTime}}</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>

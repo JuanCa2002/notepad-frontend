@@ -6,6 +6,7 @@ import { MenuItem } from 'primeng/api';
 import { UserApiConstants } from './constants/apis/user-api.constants';
 import { UserMessagesConstants } from './constants/messages/user-messages.constants';
 import { ProfileRouterConstants } from './constants/routers/profile/profile-router-constants';
+import { MainPageRouterConstants } from './constants/routers/main-page/main-page-router-constants';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.items = [
+      { label: 'Home', icon: 'pi pi-home',  command: (click) => {this.goHome();}},
       { label: 'My profile', icon: 'pi pi-user-edit', command: (click) => {this.goToProfile();}},
       { label: 'Sign Out', icon: 'pi pi-sign-out',  command: (click) => {this.loginApiService.signOut();} }
   ];
@@ -31,6 +33,11 @@ export class AppComponent implements OnInit{
   private goToProfile(){
     this.router.navigate(['/'+ProfileRouterConstants.PROFILE_ROUTER]);
   }
+
+  public goHome(){
+    this.router.navigate(['/'+MainPageRouterConstants.MAIN_PAGE_ROUTER]);
+  }
+
 
   private verifyLogging(){
     const user = localStorage.getItem('user');

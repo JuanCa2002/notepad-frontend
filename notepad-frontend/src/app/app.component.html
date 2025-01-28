@@ -2,8 +2,8 @@
   <p-menubar>
       <ng-template pTemplate="start">
         <div 
-            class="flex border-circle justify-content-center align-items-center shadow-2 hover:shadow-4 transition-duration-300"
-            style="width: 180px; height: 90px; overflow: hidden;"
+            class="flex border-circle cursor-pointer justify-content-center align-items-center shadow-2 hover:shadow-4 transition-duration-300"
+            style="width: 180px; height: 90px; overflow: hidden;" (click)="goHome()"
           >
             <img 
               src="assets/images/my-note-pad-logo.jpg" 

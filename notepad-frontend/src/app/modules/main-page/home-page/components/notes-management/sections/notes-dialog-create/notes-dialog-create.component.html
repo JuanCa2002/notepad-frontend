@@ -77,7 +77,7 @@
     </form>
     <div class="flex flex-row justify-content-end" >
         <div class="flex gap-2">
-            <p-button label="{{(justRead? 'Close': 'Cancel')}}" severity="secondary" (onClick)="showModalNew = false; this.resetForm(); this.justRead= false" />
+            <p-button label="{{(justRead? 'Close': 'Cancel')}}" severity="secondary" (onClick)="showModalNew = false; this.resetForm(); this.justRead= false; this.isUpdate=false" />
             <p-button *ngIf="!justRead" 
                 label="{{isUpdate ? 'Update' : 'Save'}}" 
                 [disabled]="formCreateNote.invalid"
